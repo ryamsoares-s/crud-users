@@ -20,11 +20,26 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { email, name } = body;
 
-    // No seu código anterior, a validação pedia 'name', vamos mantê-la
     if (!email || !name) {
       return NextResponse.json(
         { error: "Nome e email são obrigatórios" },
         { status: 400 } // 400 = Bad Request
+      );
+    }
+
+    const userExists = await prisma.user.findFirst({
+      where: {
+        email: {
+          equals: email,
+          mode: "insensitive",
+        },
+      },
+    });
+
+    if (userExists) {
+      return NextResponse.json(
+        { error: "Email já cadastrado" },
+        { status: 400 }
       );
     }
 
