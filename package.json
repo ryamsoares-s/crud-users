@@ -11,7 +11,7 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "test": "jest --watch"
+    "test": "jest --watch --runInBand"
   },
   "dependencies": {
     "@prisma/client": "^6.16.1",
