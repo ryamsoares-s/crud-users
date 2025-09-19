@@ -8,7 +8,7 @@ afterAll(async () => {
   await prisma.$disconnect();
 });
 
-describe("API de Usuários - /api/users", () => {
+describe("API de Usuários - CREATE", () => {
   test("cria um usuário", async () => {
     const newUser = {
       email: "teste@exemplo.com",
